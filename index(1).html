@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="auth-buttons">
+        <div class="marquee-container">
+            <div class="marquee">
+                Discover Your Next Favorite Flick with CineSmart – Where Every Recommendation is a Blockbuster!
+            </div>
+        </div>        
+        <button id="signup-button">Signup</button>
+        <button id="login-button">Login</button>
+    </div>
+
+    <!-- The Modal for Signup -->
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-signup">&times;</span>
+            <div class="form-container">
+                <h1>Signup</h1>
+                <form action="/signup" method="post">
+                    <input type="text" id="signup-username" name="username" placeholder="Username" required>
+                    <input type="email" id="signup-email" name="email" placeholder="Email" required>
+                    <input type="password" id="signup-password" name="password" placeholder="Password" required>
+                    <button type="submit">Signup</button>
+                </form>
+                <p>Already have an account? <a href="#" id="go-to-login">Login here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- The Modal for Login -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-login">&times;</span>
+            <div class="form-container">
+                <h1>Login</h1>
+                <form action="/login" method="post">
+                    <input type="email" id="login-email" name="email" placeholder="Email" required>
+                    <input type="password" id="login-password" name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="#" id="go-to-signup">Signup here</a></p>
+            </div>
+        </div>
+    </div>
+
+    <header>
+        <h1 style="font: size 70%;">CineSmart</h1>
+        <div id="top-bar">
+            <section id="search">
+                <input type="text" id="search-bar" placeholder="Search for movies...">
+            </section>
+        </div>
+    </header>
+    <main>
+        <section id="filters">
+            <div id="filter-genre">
+                <label for="genre">Genre:</label>
+                <select id="genre">
+                    <option value="all">All</option>
+                    <option value="action">Action</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="animation">Animation</option>
+                    <option value="biography">Biography</option>
+                    <option value="comedy">Comedy</option>
+                    <option value="crime">Crime</option>
+                    <option value="documentary">Documentary</option>
+                    <option value="drama">Drama</option>
+                    <option value="family">Family</option>
+                    <option value="fantasy">Fantasy</option>
+                    <option value="history">History</option>
+                    <option value="horror">Horror</option>
+                    <option value="music">Music</option>
+                    <option value="musical">Musical</option>
+                    <option value="mystery">Mystery</option>
+                    <option value="romance">Romance</option>
+                    <option value="sci-fi">Sci-Fi</option>
+                    <option value="sport">Sport</option>
+                    <option value="thriller">Thriller</option>
+                    <option value="war">War</option>
+                    <option value="western">Western</option>
+                </select>                
+            </div>
+            <div id="filter-rating">
+                <label for="rating">Rating:</label>
+                <select id="rating">
+                    <option value="all">All</option>
+                    <option value="u">U</option>
+                    <option value="ua">UA</option>
+                    <option value="a">A</option>
+                    <option value="s">S</option>
+                </select>
+            </div>
+        </section>
+        <section id="movie-list">
+            <h2>Recommended Movies</h2>
+            <div id="movies"></div>
+        </section>
+    </main>
+    <aside id="chatbot">
+        <button id="chatbot-button">CineBot</button>
+        <div id="chat-container">
+            <div id="chat-window"></div>
+            <input type="text" id="chat-input" placeholder="Ask me something...">
+            <button id="chat-send">Send</button>
+        </div>
+    </aside>
+
+    <script src="script.js"></script>
+</body>
+</html>
