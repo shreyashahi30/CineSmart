@@ -67,7 +67,17 @@ document.addEventListener("DOMContentLoaded", function() {
     const chatbotButton = document.getElementById('chatbot-button');
 
     chatbotButton.addEventListener('click', function() {
-        window.open('https://mediafiles.botpress.cloud/7d8c96e0-f4bf-4924-9274-f6fe28185ead/webchat/bot.html', 'CineBot', 'width=400,height=600');
+        const width = 400;
+        const height = 600;
+        const left = (screen.width / 2) - (width / 2);
+        const top = (screen.height / 2) - (height / 2);
+
+        window.open(
+            'https://mediafiles.botpress.cloud/7d8c96e0-f4bf-4924-9274-f6fe28185ead/webchat/bot.html', 
+            'CineBot', 
+            `width=${width},height=${height},top=${top},left=${left}`
+        );
     });
 });
+
 
