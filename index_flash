@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // JavaScript to redirect after 5 seconds
+        setTimeout(function() {
+            window.location.href = 'index_main.html'; // Replace 'nextpage.html' with your target page
+        }, 5000); // 5000 milliseconds = 5 seconds
+    </script>
+</head>
+<body>
+    <div class="background">
+        <div class="overlay"></div>
+        <div class="animated-text">
+            <span>C</span><span>I</span><span>N</span><span>E</span><span>S</span><span>M</span><span>A</span><span>R</span><span>T</span>
+        </div>
+    </div>
+</body>
+</html>
