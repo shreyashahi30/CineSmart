@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="mistyles.css">
+</head>
+<body>
+    <header >
+        <div class="header-container">
+            <div class="logo-section">
+                <!-- <h1 id="cinesmart-logo">CINESMART</h1> -->
+            </div>
+            <div class="sidebar-section">
+                <aside id="sidebar">
+                    <div id="sidebar-content">
+                        <div class="logo">
+                            <h2>CINESMART</h2>
+                        </div>
+                        <hr class="MuiDivider-root MuiDivider-fullWidth css-1px5dlw">
+                        <div class="categories">
+                            <h3>Categories</h3>
+                            <ul>
+                                <li><a href="#">Popular</a></li>
+                                <li><a href="#">Top Rated</a></li>
+                                <li><a href="#">Upcoming</a></li>
+                            </ul>
+                        </div>
+                        <div class="genres">
+                            <h3>Genres</h3>
+                            <ul>
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Adventure</a></li>
+                                <li><a href="#">Animation</a></li>
+                                <li><a href="#">Comedy</a></li>
+                                <!-- Add more genres as needed -->
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </header>
+        <!-- Your main content here -->
+        <main>
+            <section id="search"> 
+                <!-- <div class="MuiToolbar-root MuiToolbar-gutters MuiToolbar-regular jss4 css-i6s8oy"> -->
+                <input type="text" id="search-bar" placeholder="Search for movies...">
+            </section>
+            <!-- <section id="filters">
+                <div id="filter-genre">
+                    <label for="genre">Genre:</label>
+                    <select id="genre">
+                        <option value="all">All</option>
+                        <option value="action">Action</option>
+                        <<option value="adventure">Adventure</option>
+                        <option value="animation">Animation</option>
+                        <option value="biography">Biography</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="crime">Crime</option>
+                        <option value="documentary">Documentary</option>
+                        <option value="drama">Drama</option>
+                        <option value="family">Family</option>
+                        <option value="fantasy">Fantasy</option>
+                        <option value="history">History</option>
+                        <option value="horror">Horror</option>
+                        <option value="music">Music</option>
+                        <option value="musical">Musical</option>
+                        <option value="mystery">Mystery</option>
+                        <option value="romance">Romance</option>
+                        <option value="sci-fi">Sci-Fi</option>
+                        <option value="sport">Sport</option>
+                        <option value="thriller">Thriller</option>
+                        <option value="war">War</option>
+                        <option value="western">Western</option> 
+                    </select>                
+                </div>
+            </section> -->
+            <section id="movie-list">
+                <!-- <h2>Recommended Movies</h2> -->
+                <div id="movies"></div>
+            </section>
+        </main>
+    <script src="script.js"></script>
+</body>
+</html>
