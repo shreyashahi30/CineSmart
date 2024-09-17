@@ -5,8 +5,6 @@ body, h1, h2, h3, p, ul {
     list-style: none;
 }
 
-
-
 body {
     font-family: Arial, sans-serif;
     background: url('background image.jpg') no-repeat center center fixed;
@@ -19,53 +17,17 @@ body {
     padding: 0;
 }
 
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-     /*background-color: rgba(0, 0, 0, 0.5); Black translucent overlay */
-    z-index: 1;
-}
-
- 
-#logo-container h1 {
-    font-size: 1.5rem;
-    color: rgb(147, 7, 7);
-    margin: 0;
-    margin-top: 15px;
-    text-align: left;
-    top:20px;
-    height: 100%;
-}
-
-.content {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    text-align: center;
-    color: red;
-}
-
-
-#title {
-    color: red;
-    text-align: center;
-    margin-bottom: 20px; /* Space between the title and the search bar */
-    font-size: 45px; /* Adjust font size as needed */
-}
+/* Header */
 .header {
     background-color: black;
     width: 100%;
     padding: 20px;
     text-align: center;
     color: white;
-    position: relative;
+    position: absolute;
     z-index: 2; /* Ensures header is above the overlay */
-
 }
+
 /* Header container */
 #header-container {
     display: flex;
@@ -85,15 +47,12 @@ body::before {
     box-sizing: border-box; /* Ensure padding is included in height calculation */
 }
 
-
 #sidebar-content {
     display: flex;
     flex-direction: column;
-    top:0px;
-    width: 100px;
+    top: 0px;
+    width: 100%;
     padding: 0 0 20px 0;
-    
-
 }
 
 .logo h2 {
@@ -101,34 +60,22 @@ body::before {
     font-size: 28px;
     font-weight: bold;
     margin-bottom: 30px;
-    padding: 0 0 10px 0; 
-    width: 100px;
+    padding: 0 0 10px 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.css-1px5dlw {
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.12);
-    width: 240%;
-    margin-left: -20%;
-}
+/* Divider */
 .custom-divider {
     border: 0;
     height: 1px;
     background-color: #ccc; /* Adjust the color as needed */
     margin: 10px 0;
-    width: 150%; /* Ensures it takes the full width of the container */
+    width: 100%; /* Ensures it takes the full width of the container */
 }
-hr{
-    display: block;
-    margin-block-start: 0.5em;
-    margin-block-end: 0.5em;
-    margin-inline-start: auto;
-    margin-inline-end: auto;
-    unicode-bidi: isolate;
-    overflow: hidden;
-}
+
+/* Categories and Genres */
 .categories, .genres {
     margin-bottom: 30px;
 }
@@ -151,38 +98,41 @@ hr{
     text-decoration: underline;
 }
 
-/* Right header */
-#right-header {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
-
-#logo-container h1 {
-    font-size: 32px;
-    color: #fff;
-    font-weight: bold;
-}
-
 #auth-buttons {
-    margin-left: auto;
+    width: 97%;
     display: flex;
-    gap: 15px;
+    justify-content:right; /* Align buttons to the right */
+    padding: 10px 20px;
+    position: absolute;
+    top: 10px; 
 }
 
-#auth-buttons button {
-    background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
-    padding: 8px 15px;
+#signup-button, #login-button {
+    padding: 10px 20px;
+    background-color: #b22222;
+    background:linear-gradient(to bottom,#8A0303,#8A0303,#700404,#3C0606,#220707,#080808);
+    color: #ffffff;
+    border: none;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase; /* Uppercase text */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Consistent font size */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
+    z-index: 1500;
 }
 
-#auth-buttons button:hover {
-    background-color: #555;
-    border-color: #ff1e1e;
+#signup-button {
+    margin-left: 10px; /* Space between buttons */
+}
+
+#login-button {
+    margin-left: 10px; /* Space between buttons */
+}
+
+#signup-button:hover, #login-button:hover {
+    background-color: #ff4444; /* Lighter color on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
 }
 
 /* Main content */
@@ -204,59 +154,22 @@ main {
     z-index: 1100;
     top: 0px; 
     margin-left: -20px;
-     
 }
 
-@media (min-width: 600px) {
-    .css-i6s8oy {
-        min-height: 64px;
-        /* padding-left: 24px; */
-        /* padding-right: 24px; */
-        background-color: red;
-
-        position: relative;
-        display: flex;
-        -webkit-box-align: center;
-        align-items: center
-        /* color: rgb(255, 255, 255); */
-        /* position: fixed;
-        top: 0;
-        right: 0;
-        left: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center; /* Added to center content if needed */
-        /* margin-bottom: 20px;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, 
-                    rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, 
-                    rgba(0, 0, 0, 0.12) 0px 1px 10px;
-        flex-direction: column;
-        width: 100%;
-        box-sizing: border-box;
-        flex-shrink: 0;
-        z-index: 1100;
-        transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1); */ 
-    }
-}
-
-
- #search-bar {
+#search-bar {
     width: 50%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #333;
     font-size: 16px;
-    
-    /* Center horizontally */
     margin-left: 110px;
     margin-right: auto;
     display: block;
     margin-top: 20px;
-    margin-bottom: 30px;;
-
-    /* Center vertically and push downwards */
+    margin-bottom: 30px;
 }
 
+/* Filters */
 #filters {
     margin-bottom: 20px;
 }
@@ -275,6 +188,7 @@ main {
     font-size: 16px;
 }
 
+/* Movie list */
 #movie-list h2 {
     font-size: 24px;
     margin-bottom: 15px;
@@ -291,100 +205,120 @@ main {
     position: fixed;
     bottom: 20px;
     right: 20px;
+    z-index: 1500;
 }
 
 #chatbot-button {
     background-color: #ff1e1e;
+    background:linear-gradient(to bottom,#8A0303,#8A0303,#700404,#3C0606,#220707,#080808);
     border: none;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add shadow for a floating effect */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
 }
 
 #chatbot-button:hover {
     background-color: #ff4949;
+    transform: scale(1.05); /* Slight zoom on hover */
 }
 
-/* Modal styles */
+.form-container {
+    background: #1f1f1f;
+    padding: 70px; /* Reduced padding for smaller form */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 320px; /* Slightly smaller width */
+    text-align: center;
+    margin: 20px; /* Adjusted margin for better spacing */
+}
+
+.form-container h1 {
+    margin-bottom: 30px;
+    font-size: larger;
+    font-weight: bolder;
+    color: white;
+}
+
+.form-container input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background:whitesmoke;
+    color: #fff;
+}
+
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #ff4444;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.form-container button:hover {
+    background: #ff4444;
+}
+
+.form-container a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.form-container a:hover {
+    color: #cccccc;
+}
+
 .modal {
-    display: none;
+    display:none;
     position: fixed;
-    z-index: 1000;
+    z-index: 1500;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.8);
-    justify-content: center;
-    align-items: center;
+    background-color: rgba(0,0,0,0.5); /* Semi-transparent background */
 }
 
 .modal-content {
-    background-color: #333;
+    background-color: #1f1f1f;
+    margin: 10% auto; /* Adjusted margin for positioning */
     padding: 20px;
-    border-radius: 5px;
-    width: 300px;
+    border: 1px solid #888;
+    width: 60%; /* Slightly wider than .form-container */
+    max-width: 500px; /* Adjusted max-width for larger modal */
+    height: auto; /* Let content define the height */
+    position: relative;
+    border-radius: 8px; /* Added border-radius for consistency */
 }
 
-.modal-content h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.modal-content input[type="text"],
-.modal-content input[type="email"],
-.modal-content input[type="password"] {
+#chatbot-frame {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    border: 1px solid #555;
-    background-color: #444;
-    color: #fff;
-}
-
-.modal-content button {
-    width: 100%;
-    padding: 10px;
-    background-color: #ff1e1e;
+    height: 100%;
     border: none;
-    color: #fff;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.modal-content button:hover {
-    background-color: #ff4949;
-}
-
-.modal-content p {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #ddd;
-}
-
-.modal-content a {
-    color: #ff1e1e;
-    text-decoration: none;
-}
-
-.modal-content a:hover {
-    text-decoration: underline;
 }
 
 .close {
     color: #aaa;
+    float: right;
     font-size: 28px;
     font-weight: bold;
-    float: right;
-    cursor: pointer;
 }
 
 .close:hover,
 .close:focus {
     color: #fff;
+    text-decoration: none;
+    cursor: pointer;
 }
