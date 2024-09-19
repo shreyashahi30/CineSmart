@@ -2,31 +2,70 @@
 
 // Replace 'YOUR_TMDB_API_KEY' with your actual TMDB API key
 const apiKey = 'd8fb378b6567392adbfae7049c722249';
-const popularMoviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
-// Function to fetch and display popular movies
-function fetchPopularMovies() {
-    fetch(popularMoviesUrl)
+// Base URLs for different categories
+const baseUrl = 'https://api.themoviedb.org/3/movie';
+const categoryUrls = {
+    popular: `${baseUrl}/popular?api_key=${apiKey}`,
+    topRated: `${baseUrl}/top_rated?api_key=${apiKey}`,
+    upcoming: `${baseUrl}/upcoming?api_key=${apiKey}`
+};
+
+// Function to fetch and display movies based on category
+function fetchMoviesByCategory(category) {
+    const url = categoryUrls[category];
+    fetch(url)
         .then(response => response.json())
         .then(data => {
             displayMovies(data.results);
+            updateCategoryTitle(category);
+            setActiveLink(category);
         })
-        .catch(error => console.error('Error fetching popular movies:', error));
+        .catch(error => console.error(`Error fetching ${category} movies:`, error));
 }
 
-// Function to fetch and display movies based on a search query
-function searchMovies(query) {
-    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`;
-
-    fetch(searchUrl)
-        .then(response => response.json())
-        .then(data => {
-            displayMovies(data.results);
-        })
-        .catch(error => console.error('Error searching movies:', error));
+// Function to update the category title
+function updateCategoryTitle(category) {
+    const categoryTitle = document.getElementById('category-title');
+    let titleText = '';
+    switch (category) {
+        case 'popular':
+            titleText = 'Popular Movies';
+            break;
+        case 'topRated':
+            titleText = 'Top Rated Movies';
+            break;
+        case 'upcoming':
+            titleText = 'Upcoming Movies';
+            break;
+        default:
+            titleText = 'Movies';
+    }
+    categoryTitle.textContent = titleText;
 }
 
-// Function to display movies in the #movies container
+// Function to set the active link in the sidebar
+function setActiveLink(activeCategory) {
+    // Remove 'active' class from all links
+    const links = document.querySelectorAll('.categories ul li a');
+    links.forEach(link => link.classList.remove('active'));
+
+    // Map category names to link IDs
+    const categoryToLinkId = {
+        popular: 'popular-link',
+        topRated: 'top-rated-link',
+        upcoming: 'upcoming-link',
+    };
+
+    const linkId = categoryToLinkId[activeCategory];
+    const activeLink = document.getElementById(linkId);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+}
+
+
+// Update the displayMovies function if needed
 function displayMovies(movies) {
     const moviesContainer = document.getElementById('movies');
     moviesContainer.innerHTML = ''; // Clear any existing content
@@ -152,18 +191,47 @@ window.addEventListener('click', function(event) {
     }
 });
 
+// Event listeners for sidebar category links
+document.getElementById('popular-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    fetchMoviesByCategory('popular');
+});
+
+document.getElementById('top-rated-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    fetchMoviesByCategory('topRated');
+});
+
+document.getElementById('upcoming-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    fetchMoviesByCategory('upcoming');
+});
+
 // Single DOMContentLoaded event listener
 document.addEventListener('DOMContentLoaded', function() {
-    fetchPopularMovies(); // Display popular movies on page load
+    fetchMoviesByCategory('popular'); // Load popular movies on page load
 
     const searchBar = document.getElementById('search-bar');
     searchBar.addEventListener('keyup', function(event) {
         const query = searchBar.value.trim();
         if (query.length > 0) {
             searchMovies(query);
+            updateCategoryTitle('Search Results');
+            setActiveLink(null); // Remove active class from category links
         } else {
-            // If the search bar is empty, display popular movies
-            fetchPopularMovies();
+            fetchMoviesByCategory('popular');
         }
     });
 });
+
+// Function to fetch and display movies based on a search query
+function searchMovies(query) {
+    const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`;
+
+    fetch(searchUrl)
+        .then(response => response.json())
+        .then(data => {
+            displayMovies(data.results);
+        })
+        .catch(error => console.error('Error searching movies:', error));
+}

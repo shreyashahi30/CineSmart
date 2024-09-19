@@ -141,6 +141,15 @@ hr{
     text-decoration: underline;
 }
 
+.categories ul li a.active {
+    font-weight: bold;
+    color: #ff1e1e; /* Highlight color */
+    text-decoration: underline;
+}
+#category-title.search-results {
+    color: #ff1e1e;
+}
+
 /* Right header */
 #right-header {
     display: flex;
