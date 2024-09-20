@@ -82,7 +82,7 @@ function getGenreName(genreId) {
         37: 'Western',
         // Add any additional genres you need
     };
-    return genreMapping[genreId] || 'Unknown Genre';
+    return genreMapping[genreId]; // No default return for unknown genres
 }
 
 // Function to fetch and display movie details in a modal
