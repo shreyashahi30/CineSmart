@@ -4,22 +4,22 @@
 const apiKey = 'd8fb378b6567392adbfae7049c722249';
 const popularMoviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
 
-// Function to fetch and display popular mystery movies
+// Function to fetch and display popular thriller movies
 function fetchPopularMovies() {
     fetch(popularMoviesUrl)
         .then(response => response.json())
         .then(data => {
             const movies = data.results;
-            const mysteryMoviesContainer = document.getElementById('movies');
-            mysteryMoviesContainer.innerHTML = ''; // Clear any existing content
+            const thrillerMoviesContainer = document.getElementById('movies');
+            thrillerMoviesContainer.innerHTML = ''; // Clear any existing content
 
-            // Filter movies by "Mystery" genre (ID: 9648)
-            const mysteryGenreId = 9648; // Mystery genre ID from TMDB
-            const mysteryMovies = movies.filter(movie => 
-                movie.genre_ids.includes(mysteryGenreId)
+            // Filter movies by "Thriller" genre (ID: 53)
+            const thrillerGenreId = 53; // Thriller genre ID from TMDB
+            const thrillerMovies = movies.filter(movie => 
+                movie.genre_ids.includes(thrillerGenreId)
             );
 
-            mysteryMovies.forEach(movie => {
+            thrillerMovies.forEach(movie => {
                 // Create movie card elements
                 const movieCard = document.createElement('div');
                 movieCard.classList.add('movie-card');
@@ -47,7 +47,7 @@ function fetchPopularMovies() {
                 movieCard.appendChild(genresContainer);
 
                 // Append movie card to container
-                mysteryMoviesContainer.appendChild(movieCard);
+                thrillerMoviesContainer.appendChild(movieCard);
 
                 // Add click event listener to the movie card
                 movieCard.addEventListener('click', () => {
