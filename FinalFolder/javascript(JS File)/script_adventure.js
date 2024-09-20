@@ -37,7 +37,10 @@ function fetchPopularMovies() {
 
                 const genresContainer = document.createElement('div');
                 genresContainer.classList.add('genres');
-                const genreNames = movie.genre_ids.map(genreId => getGenreName(genreId)).join(', ');
+                const genreNames = movie.genre_ids
+                    .map(genreId => getGenreName(genreId))
+                    .filter(name => name !== '') // Filter out empty strings
+                    .join(', ');
                 genresContainer.textContent = genreNames; // Add all genre names with commas
 
                 // Append elements to movie card
@@ -82,7 +85,7 @@ function getGenreName(genreId) {
         37: 'Western',
         // Add any additional genres you need
     };
-    return genreMapping[genreId] || 'Unknown Genre';
+    return genreMapping[genreId] || ''; // Return empty string instead of 'Unknown Genre'
 }
 
 // Function to fetch and display movie details in a modal
