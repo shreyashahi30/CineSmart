@@ -42,28 +42,81 @@ body {
 #sidebar {
     width: 200px;
     background-color: black;
-    padding: 20px;
+    padding: 10px;
     min-height: 100vh; /* Make the sidebar at least the full height of the viewport */
     box-sizing: border-box; /* Ensure padding is included in height calculation */
+    overflow-y: auto; 
+    top: 0; /* Align the sidebar to the top of the viewport */
+    left: 0; /* Align the sidebar to the left of the viewport */
 }
-
+#sidebar-container {
+    ::-webkit-scrollbar {
+        width: 50px; /* Adjust the width as needed */
+    }
+    ::-webkit-scrollbar-thumb {
+        background-color: #888; /* Customize the thumb color */
+    }
+}
 #sidebar-content {
     display: flex;
     flex-direction: column;
     top: 0px;
     width: 100%;
     padding: 0 0 20px 0;
+    height: calc(100vh - 40px);
+}
+
+/* Line below CINESMART */
+#sidebar-content .logo h2 {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* Grey transparent border */
+    padding-bottom: 30px;
+    width: 100%; /* Ensure it spans the full width of the sidebar */
+}
+
+/* Transparent partition between categories and genres */
+#sidebar-content .categories,
+#sidebar-content .genres {
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5); /* Grey transparent border */
+    padding-bottom: 30px;
+    width: 100%; /* Ensure it spans the full width of the sidebar */
+}
+
+/* Icon styling */
+#sidebar-content .categories ul li,
+#sidebar-content .genres ul li {
+    list-style: none; /* Remove default bullet points */
+}
+
+#sidebar-content .categories ul li a,
+#sidebar-content .genres ul li a {
+    display: flex; /* Create a flex container */
+    align-items: center; /* Center items vertically */
+}
+
+#sidebar-content .categories ul li a img,
+#sidebar-content .genres ul li a img {
+    width: 30px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    margin-right: 10px; /* Add spacing between icon and text */
 }
 
 .logo h2 {
     color: #ff1e1e;
-    font-size: 28px;
+    font-size: 25px;
     font-weight: bold;
     margin-bottom: 30px;
     padding: 0 0 10px 0;
     width: 100%;
     display: flex;
     flex-direction: column;
+    text-transform: uppercase; 
+    margin-bottom: 10px; 
+    letter-spacing: 2px; 
+    text-align: center;
+    display: inline-block; 
+    transform: perspective(500px) rotateX(20deg); 
+    font-family: 'Arial', sans-serif;
+    margin-top: 20px;
 }
 
 /* Divider */
@@ -104,7 +157,7 @@ body {
     justify-content:right; /* Align buttons to the right */
     padding: 10px 20px;
     position: absolute;
-    top: 10px; 
+    top: 15px; 
 }
 
 #signup-button, #login-button {
@@ -138,7 +191,7 @@ body {
 /* Main content */
 main {
     flex: 1;
-    padding: 20px;
+    padding: 20px; 
 }
 
 #search {
@@ -227,7 +280,6 @@ main {
 }
 
 .form-container {
-    background: #1f1f1f;
     padding: 70px; /* Reduced padding for smaller form */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -321,4 +373,68 @@ main {
     color: #fff;
     text-decoration: none;
     cursor: pointer;
+}
+
+#movie-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Reduced gap between cards */
+    justify-content: center;
+}
+
+.movie-card {
+    flex: 1 1 calc(20% - 15px); /* Adjusted to fit more cards per row */
+    box-sizing: border-box;
+    border: 1px solid #444;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    background-color: #282828;
+    max-width: 250px; /* Set a max width to ensure cards don't get too large */
+    margin-top: 100px;
+}
+
+.movie-card img {
+    width: 100%;
+    height: 150px; /* Fixed height for images to fit the card */
+    object-fit:initial; /* Ensures the image covers the area of the card without distortion */
+    display: block;
+}
+
+.movie-details {
+    padding: 10px;
+}
+
+.movie-details h2 {
+    color: #fff;
+    font-size: 0.5em; /* Adjusted font size */
+    margin: 10px 0;
+}
+
+.movie-details p {
+    color: #fff;
+    margin: 0;
+    font-size: 0.9em; /* Adjusted font size */
+}
+
+.rating {
+    color: gold;
+}
+
+.modal-content img {
+    width: 100%; /* Makes the image responsive */
+    height: auto; /* Maintains aspect ratio */
+    max-height: 1000px; /* Sets a maximum height */
+    object-fit: cover; /* Ensures the image covers the area without distortion */
+    border-radius: 8px; /* Optional: adds rounded corners */
+}
+
+.modal-content {
+    padding: 20px; /* Adjusts padding for better spacing */
+}
+
+#modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the content */
 }
