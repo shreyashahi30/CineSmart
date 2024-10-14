@@ -79,19 +79,14 @@ Once the project is running, open the application in your browser. You will see 
 
 ## Screenshots
 
-### 1. **Homepage**
 ![Homepage](./screenshots/homepage.png)
 
-### 2. **Signup Modal**
 ![Signup Modal](./screenshots/signup-modal.png)
 
-### 3. **Login Modal**
 ![Login Modal](./screenshots/login-modal.png)
 
-### 4. **Movie Categories**
 ![Movie Categories](./screenshots/categories.png)
 
-### 5. **Chatbot**
 ![Chatbot](./screenshots/chatbot.png)
 
 > You can take screenshots by running the app locally and capturing the screen:
