@@ -81,18 +81,15 @@ Once the project is running, open the application in your browser. You will see 
 
 ![Homepage](./screenshots/homepage.png)
 
-![Signup Modal](./screenshots/signup-modal.png)
+![Signup Modal](./screenshots/anime.png)
 
-![Login Modal](./screenshots/login-modal.png)
+![Login Modal](./screenshots/cartoon.png)
 
-![Movie Categories](./screenshots/categories.png)
+![Movie Categories](./screenshots/image.png)
 
-![Chatbot](./screenshots/chatbot.png)
+![Chatbot](./screenshots/image1.png)
 
-> You can take screenshots by running the app locally and capturing the screen:
-> - For **Windows**, press `Windows + Shift + S` to open the snipping tool.
-> - For **macOS**, press `Cmd + Shift + 4` to take a screenshot.
-> - Save screenshots in the `screenshots` folder in your project directory.
+![Search](./screenshots/search.png)
 
 ---
 
