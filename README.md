@@ -91,6 +91,8 @@ Once the project is running, open the application in your browser. You will see 
 
 ![Search](./screenshots/search.png)
 
+![Chatbot](./screenshots/chatbot.png)
+
 ---
 
 ## Technologies Used
