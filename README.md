@@ -87,11 +87,11 @@ Once the project is running, open the application in your browser. You will see 
 
 ![Movie Categories](./screenshots/image.png)
 
-![Chatbot](./screenshots/image1.png)
+![image](./screenshots/image1.png)
 
 ![Search](./screenshots/search.png)
 
-![Chatbot](./screenshots/chatbot.png)
+![Chatbot](./screenshots/Chatbot.png)
 
 ---
 
