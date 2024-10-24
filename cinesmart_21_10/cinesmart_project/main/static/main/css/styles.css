@@ -23,7 +23,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 200px;
+    width: 220px;
     background-color: black;
     padding: 20px;
     height: 100vh;
@@ -65,6 +65,13 @@ body {
     text-decoration: underline;
 }
 
+.genres ul li a.active {
+    font-weight: bold;
+    color: #ff1e1e;
+    text-decoration: underline;
+}
+
+
 .categories ul li a.active {
     font-weight: bold;
     color: #ff1e1e;
@@ -74,6 +81,8 @@ body {
 #category-title.search-results {
     color: #ff1e1e;
 }
+
+
 
 /* Top Header */
 #top-header {

@@ -9,8 +9,10 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     signup_form = SignupForm()
     login_form = LoginForm()
-    return render(request, 'main/mi.html', {'signup_form': signup_form, 'login_form': login_form})
-
+    return render(request, 'main/mi.html', {
+        'signup_form': signup_form,
+        'login_form': login_form,
+    })
 def signup_view(request):
     if request.method == 'POST':
         signup_form = SignupForm(request.POST, request.FILES)

@@ -1,8 +1,58 @@
 // main/static/main/js/script.js
 
 const apiKey = 'd8fb378b6567392adbfae7049c722249';
-const popularMoviesUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-const searchMoviesUrl = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=`;
+
+const baseApiUrl = 'https://api.themoviedb.org/3';
+const searchMoviesUrl = `${baseApiUrl}/search/movie?api_key=${apiKey}&query=`;
+
+const categoryUrls = {
+    'popular': `${baseApiUrl}/movie/popular?api_key=${apiKey}`,
+    'top_rated': `${baseApiUrl}/movie/top_rated?api_key=${apiKey}`,
+    'upcoming': `${baseApiUrl}/movie/upcoming?api_key=${apiKey}`,
+    // Add more categories as needed
+};
+
+let currentCategory = 'popular'; // Default category
+let currentGenreId = null; // No genre selected by default
+
+
+function fetchMoviesByGenre(genreId) {
+    const url = `${baseApiUrl}/discover/movie?api_key=${apiKey}&with_genres=${genreId}`;
+    fetchMovies(url);
+}
+
+function handleGenreClicks() {
+    const genreLinks = document.querySelectorAll('.genres ul li a');
+    genreLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault();
+            const genreId = this.getAttribute('data-genre-id');
+            if (genreId) {
+                currentGenreId = genreId;
+                currentCategory = null; // Reset current category
+                fetchMoviesByGenre(genreId);
+                updateActiveGenreLink(genreId);
+                updateActiveCategoryLink(null); // Remove active class from categories
+                // Reset search input
+                if (searchBar) {
+                    searchBar.value = '';
+                }
+            }
+        });
+    });
+}
+
+
+function updateActiveGenreLink(selectedGenreId) {
+    const genreLinks = document.querySelectorAll('.genres ul li a');
+    genreLinks.forEach(link => {
+        if (link.getAttribute('data-genre-id') === selectedGenreId) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
 
 // Function to fetch movies
 function fetchMovies(url) {
@@ -15,7 +65,7 @@ function fetchMovies(url) {
             const movies = data.results;
             moviesContainer.innerHTML = ''; 
 
-            if (movies.length === 0) {
+            if (!movies || movies.length === 0) {
                 moviesContainer.innerHTML = '<p>No results found.</p>';
                 return;
             }
@@ -61,20 +111,20 @@ function fetchMovies(url) {
         });
 }
 
-// Function to fetch and display popular movies
-function fetchPopularMovies() {
-    fetchMovies(popularMoviesUrl);
-}
-
-// Function to search movies based on query
-function searchMovies(query) {
-    const url = `${searchMoviesUrl}${encodeURIComponent(query)}`;
-    fetchMovies(url);
+// Function to fetch movies by category
+function fetchMoviesByCategory(category) {
+    const url = categoryUrls[category];
+    if (url) {
+        currentGenreId = null; // Reset current genre
+        fetchMovies(url);
+    } else {
+        console.error(`No URL found for category: ${category}`);
+    }
 }
 
 // Function to fetch and display movie details in a modal
 function fetchMovieDetails(movieId) {
-    const movieDetailsUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${apiKey}&language=en-US`;
+    const movieDetailsUrl = `${baseApiUrl}/movie/${movieId}?api_key=${apiKey}&language=en-US`;
 
     fetch(movieDetailsUrl)
         .then(response => response.json())
@@ -151,6 +201,40 @@ window.addEventListener('click', function(event) {
         closeModal();
     }
 });
+
+// Function to handle category clicks
+function handleCategoryClicks() {
+    const categoryLinks = document.querySelectorAll('.categories ul li a');
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default link behavior
+            const selectedCategory = this.getAttribute('data-category');
+            if (selectedCategory) {
+                currentCategory = selectedCategory;
+                currentGenreId = null; // Reset current genre
+                fetchMoviesByCategory(currentCategory);
+                updateActiveCategoryLink(selectedCategory);
+                updateActiveGenreLink(null); // Remove active class from genres
+                // Reset search input
+                if (searchBar) {
+                    searchBar.value = '';
+                }
+            }
+        });
+    });
+}
+
+// Function to update the active class on the sidebar links
+function updateActiveCategoryLink(selectedCategory) {
+    const categoryLinks = document.querySelectorAll('.categories ul li a');
+    categoryLinks.forEach(link => {
+        if (link.getAttribute('data-category') === selectedCategory) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
 
 // Authentication and other functionalities
 function handleAuthModalsAndMessages() {
@@ -284,8 +368,53 @@ function handleAuthModalsAndMessages() {
     });
 }
 
+// Handle search input
+const searchBar = document.getElementById('search-bar');
+const debounceDelay = 500;
+let debounceTimer;
+
+if (searchBar) {
+    searchBar.addEventListener('input', function () {
+        clearTimeout(debounceTimer);
+        const query = searchBar.value.trim();
+
+        debounceTimer = setTimeout(() => {
+            if (query) {
+                searchMovies(query);
+                // Optionally, clear active category highlighting when searching
+                updateActiveCategoryLink(null);
+            } else {
+                // Re-fetch movies based on the current category
+                fetchMoviesByCategory(currentCategory);
+                // Update active category link
+                updateActiveCategoryLink(currentCategory);
+            }
+        }, debounceDelay);
+    });
+}
+
+// Function to search movies
+function searchMovies(query) {
+    const url = `${searchMoviesUrl}${encodeURIComponent(query)}`;
+    fetchMovies(url);
+    // Reset category and genre selections
+    currentCategory = null;
+    currentGenreId = null;
+    updateActiveCategoryLink(null);
+    updateActiveGenreLink(null);
+}
+
 // Initialize functions after DOM content is loaded
 document.addEventListener("DOMContentLoaded", function() {
-    fetchPopularMovies();
+    // Fetch movies for the default category
+    fetchMoviesByCategory(currentCategory);
+
+    // Handle category clicks
+    handleCategoryClicks();
+
+    // Handle genre clicks
+    handleGenreClicks();
+
+    // Existing function calls
     handleAuthModalsAndMessages();
 });
